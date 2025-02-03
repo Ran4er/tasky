@@ -1,10 +1,26 @@
 ktor:
     application:
         modules:
-            - com.ApplicationKt.module
+            - com.tasky.ApplicationKt.module
     deployment:
         port: 8080
+    compression: false
+    logAllRequests: true
 jwt:
   domain: "https://jwt-provider-domain/"
   audience: "jwt-audience"
   realm: "ktor sample app"
+db:
+  jdbcDriver: "org.postgresql.Driver"
+  jdbcUrl: "jdbc:postgresql://localhost:5432/tasky"
+  dbUser: "taskyGod"
+  dbPassword: "god"
+  maxPoolSize: 5 #maybe should to change?
+
+flyway:
+  clean: false
+
+swagger:
+  servers:
+    url: "http://localhost:8080/"
+    description: "localhost hosting"

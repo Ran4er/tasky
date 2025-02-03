@@ -1,5 +1,6 @@
 
 val ktor_version: String by project
+val logback_version: String by project
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -35,13 +36,15 @@ dependencies {
     implementation("io.ktor:ktor-server-openapi:$ktor_version")
     implementation("io.ktor:ktor-server-swagger:$ktor_version")
 
+    implementation("io.ktor:ktor-server-call-logging:$ktor_version")
+
     // serialization
     implementation(libs.ktor.serialization.jackson)
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310") // needed for multipart parsing
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8") // needed for Optional<> parsing
 
     // Logging and test
-    implementation(libs.logback.classic)
+    testImplementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
     testImplementation("io.mockk:mockk:1.13.16")
